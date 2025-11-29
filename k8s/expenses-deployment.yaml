@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: expenses-service
+  labels:
+    app: expenses-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: expenses-service
+  template:
+    metadata:
+      labels:
+        app: expenses-service
+    spec:
+      containers:
+      - name: expenses-service
+        image: ghcr.io/0debt/expenses-service:latest
+        ports:
+        - containerPort: 3000
+        env:
+        - name: MONGO_URI
+          value: "mongodb://mongo-expenses:27017/expenses"
+        - name: GROUPS_SERVICE_URL
+          value: "http://groups-service:3000"
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: expenses-service
+spec:
+  type: ClusterIP
+  selector:
+    app: expenses-service
+  ports:
+  - port: 3000
+    targetPort: 3000

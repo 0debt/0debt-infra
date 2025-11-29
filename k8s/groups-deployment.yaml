@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: groups-service
+  labels:
+    app: groups-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: groups-service
+  template:
+    metadata:
+      labels:
+        app: groups-service
+    spec:
+      containers:
+      - name: groups-service
+        image: ghcr.io/0debt/groups-service:latest
+        ports:
+        - containerPort: 3000
+        env:
+        - name: MONGO_URI
+          value: "mongodb://mongo-groups:27017/groups"
+        - name: USERS_SERVICE_URL
+          value: "http://users-service:3000"
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: groups-service
+spec:
+  type: ClusterIP
+  selector:
+    app: groups-service
+  ports:
+  - port: 3000
+    targetPort: 3000
