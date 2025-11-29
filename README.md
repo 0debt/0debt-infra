@@ -1,4 +1,4 @@
-# 🧭 0debt Infrastructure Repository
+# 0debt Infrastructure Repository
 
 Welcome to **0debt-infra** — the infrastructure and documentation repository for the **0debt** project.  
 This repository centralizes **Kubernetes deployment manifests**, **legal/contractual documents**, and **architecture diagrams** so that the entire system can be easily deployed, analyzed, and evaluated.
@@ -19,19 +19,18 @@ This structure simplifies evaluation and transparency for instructors, reviewers
 ---
 
 ## 🏗️ Repository Structure
-
-
-0debt-infra/
+```text
+e0debt-infra/
 │
 ├── k8s/                     → Kubernetes manifests for local deployment
 │
-├── docs/                    → Documentation and academic material  
-│   ├── agreements/          → Service agreements and legal documents  
+├── docs/                    → Documentation and academic material
+│   ├── agreements/          → Service agreements and legal documents
 │   │
-│   └── diagrams/            → Visual documentation (Mermaid and image exports)   
+│   └── diagrams/            → Visual documentation (Mermaid and image exports)
 │
-└── README.md              
-
+└── README.md
+```
 ---
 
 ## ⚙️ Deployment Instructions (Local Evaluation)
