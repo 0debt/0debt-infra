@@ -67,22 +67,6 @@ All architecture and communication diagrams are kept in `docs/diagrams/` as Mark
 
 ---
 
-## 🧑💻 Updating and Maintaining
-
-When any microservice is updated or a new version is released:
-
-1. Open the corresponding `k8s/*.yaml` manifest.
-2. Update the `image:` tag to the latest build (for example: `ghcr.io/0debt/analytics-service:v0.4.2`).
-3. Commit and push with a clear message such as:
-
-   ```bash
-   git commit -m "chore(k8s): update analytics-service to v0.4.2"
-   ```
-
-4. The instructor or evaluator can redeploy the updated stack using the same `kubectl apply` command.
-
----
-
 ## 📚 Related Repositories
 
 - [users-service](https://github.com/0debt/users-service)
