@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: 0debt
+  labels:
+    app.kubernetes.io/name: 0debt
+    app.kubernetes.io/managed-by: kustomize

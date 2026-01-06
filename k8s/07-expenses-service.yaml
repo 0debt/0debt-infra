@@ -2,6 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: expenses-service
+  namespace: 0debt
   labels:
     app: expenses-service
 spec:
@@ -19,19 +20,30 @@ spec:
         image: ghcr.io/0debt/expenses-service:latest
         ports:
         - containerPort: 3000
+        envFrom:
+        - configMapRef:
+            name: 0debt-config
+        - secretRef:
+            name: 0debt-secrets
         env:
-        - name: MONGO_URI
-          value: "mongodb://mongo-expenses:27017/expenses"
-        - name: GROUPS_SERVICE_URL
-          value: "http://groups-service:3000"
-
+        - name: MONGODB_DB_NAME
+          value: "expenses_service"
+        - name: DATABASE_URL
+          value: "mongodb://mongo:27017/expenses_service"
+        resources:
+          requests:
+            memory: "256Mi"
+            cpu: "100m"
+          limits:
+            memory: "512Mi"
+            cpu: "500m"
 ---
 apiVersion: v1
 kind: Service
 metadata:
   name: expenses-service
+  namespace: 0debt
 spec:
-  type: ClusterIP
   selector:
     app: expenses-service
   ports:

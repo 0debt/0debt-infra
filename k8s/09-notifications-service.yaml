@@ -2,6 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: notifications-service
+  namespace: 0debt
   labels:
     app: notifications-service
 spec:
@@ -19,21 +20,30 @@ spec:
         image: ghcr.io/0debt/notifications-service:latest
         ports:
         - containerPort: 3000
+        envFrom:
+        - configMapRef:
+            name: 0debt-config
+        - secretRef:
+            name: 0debt-secrets
         env:
-        - name: MONGO_URI
-          value: "mongodb://mongo-notifs:27017/notifications"
-        - name: RESEND_API_KEY
-          value: "dummy-key"
-        - name: REDIS_URL
-          value: "redis://redis:6379"
-
+        - name: MONGODB_DB_NAME
+          value: "notifications_service"
+        - name: DATABASE_URL
+          value: "mongodb://mongo:27017/notifications_service"
+        resources:
+          requests:
+            memory: "256Mi"
+            cpu: "100m"
+          limits:
+            memory: "512Mi"
+            cpu: "500m"
 ---
 apiVersion: v1
 kind: Service
 metadata:
   name: notifications-service
+  namespace: 0debt
 spec:
-  type: ClusterIP
   selector:
     app: notifications-service
   ports:

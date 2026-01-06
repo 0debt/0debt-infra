@@ -1,0 +1,37 @@
+=====================================
+ 0debt - External APIs (OPTIONAL)
+=====================================
+
+The application works WITHOUT these keys.
+They are only necessary if you want to test:
+
+1. EMAILS (Resend)
+   - For: email notifications
+   - Get it at: https://resend.com
+   - Key: RESEND_API_KEY
+
+2. AVATARS (Supabase)
+   - For: profile picture uploads
+   - Get it at: https://supabase.com
+   - Keys: SUPABASE_URL, SUPABASE_ANON_KEY
+
+3. GROUP COVERS (Unsplash)
+   - For: cover images in groups
+   - Get it at: https://unsplash.com/developers
+   - Key: UNSPLASH_ACCESS_KEY
+
+=====================================
+ HOW TO ADD THEM (if you have them)
+=====================================
+
+Edit the file: k8s/01-secrets.yaml
+
+Find the empty lines (or dummy values) and fill them in:
+
+  RESEND_API_KEY: "re_xxxx"
+  SUPABASE_URL: "https://xxxx.supabase.co"
+  SUPABASE_ANON_KEY: "eyJxxxx"
+  UNSPLASH_ACCESS_KEY: "xxxx"
+
+Then re-apply:
+  kubectl apply -k k8s/

@@ -2,6 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: users-service
+  namespace: 0debt
   labels:
     app: users-service
 spec:
@@ -19,19 +20,28 @@ spec:
         image: ghcr.io/0debt/users-service:latest
         ports:
         - containerPort: 3000
+        envFrom:
+        - configMapRef:
+            name: 0debt-config
+        - secretRef:
+            name: 0debt-secrets
         env:
-        - name: MONGO_URI
-          value: "mongodb://mongo-users:27017/users"
-        - name: JWT_SECRET
-          value: "supersecret"
-
+        - name: MONGODB_DB_NAME
+          value: "users_service"
+        resources:
+          requests:
+            memory: "256Mi"
+            cpu: "100m"
+          limits:
+            memory: "512Mi"
+            cpu: "500m"
 ---
 apiVersion: v1
 kind: Service
 metadata:
   name: users-service
+  namespace: 0debt
 spec:
-  type: ClusterIP
   selector:
     app: users-service
   ports:

@@ -35,29 +35,14 @@ e0debt-infra/
 
 ## ⚙️ Deployment Instructions (Local Evaluation)
 
-### Requirements
+Para instrucciones detalladas sobre cómo desplegar el sistema localmente, incluyendo el uso del script automatizado `start-dev.sh`, consulta el **[README de Kubernetes (k8s/)](k8s/README.md)**.
 
-Before starting, ensure you have installed:
-
-- Docker
-- kubectl
-- Minikube
-
-You must also have internet access to pull container images from GitHub Container Registry (ghcr.io).
-
-### Step 1 — Start Minikube
+### Resumen rápido (vía Bash):
 
 ```bash
-minikube start
+cd k8s
+./start-dev.sh
 ```
-
-### Step 2 — Apply All Manifests
-
-```bash
-kubectl apply -f k8s/
-```
-
-This will deploy the full 0debt stack: users, groups, expenses, notifications, analytics.
 
 ---
 

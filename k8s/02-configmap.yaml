@@ -1,0 +1,21 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: 0debt-config
+  namespace: 0debt
+data:
+  # Database
+  MONGODB_URI: "mongodb://mongo:27017"
+  REDIS_URL: "redis://redis:6379"
+
+  # Service URLs (internal cluster DNS)
+  USERS_SERVICE_URL: "http://users-service:3000"
+  GROUPS_SERVICE_URL: "http://groups-service:3000"
+  EXPENSES_SERVICE_URL: "http://expenses-service:3000"
+  NOTIFICATIONS_SERVICE_URL: "http://notifications-service:3000"
+  ANALYTICS_SERVICE_URL: "http://analytics-service:3000"
+  API_GATEWAY_URL: "http://api-gateway:8000"
+
+  # Common settings
+  PORT: "3000"
+  NODE_ENV: "production"
