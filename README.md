@@ -20,14 +20,16 @@ This structure simplifies evaluation and transparency for instructors, reviewers
 
 ## 🏗️ Repository Structure
 ```text
-e0debt-infra/
+0debt-infra/
 │
 ├── k8s/                     → Kubernetes manifests for local deployment
 │
 ├── docs/                    → Documentation and academic material
 │   ├── agreements/          → Service agreements and legal documents
-│   │
-│   └── diagrams/            → Visual documentation (Mermaid and image exports)
+│   ├── diagrams/            → Visual documentation (Mermaid and image exports)
+│   ├── comunicacion_asincrona_redis.md  → Comunicación asíncrona con Redis
+│   ├── criterio-valoracion-app-microservicios.md → Criterios de evaluación
+│   └── SAGA_PATTERN.md      → Patrón SAGA para transacciones distribuidas
 │
 └── README.md
 ```
